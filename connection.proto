@@ -22,10 +22,12 @@
 syntax = "proto3";
 
 package noelware.analytics.grpc.server.v1.connection;
-option java_package = "org.noelware.analytics.grpc.server.v1.connection";
+option java_package = "org.noelware.analytics.protobufs.v1";
 option java_multiple_files = true;
-option go_package = "internal/grpc/server/v1/connection";
-option csharp_namespace = "Noelware.Analytics.Grpc.Server.V1.Connection";
+option go_package = "internal/protobufs";
+
+//import "google/protobuf/struct.proto";
+//import "google/protobuf/timestamp.proto";
 
 service Analytics {
   rpc ConnectionAck(ConnectionAckEvent) returns (ConnectionAckResponse);
