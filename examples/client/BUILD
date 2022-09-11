@@ -19,32 +19,11 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
-
-http_archive(
-  name = "rules_proto",
-  sha256 = "e017528fd1c91c5a33f15493e3a398181a9e821a804eb7ff5acdd1d2d6c2b18d",
-  strip_prefix = "rules_proto-4.0.0-3.20.0",
-  urls = [
-    "https://github.com/bazelbuild/rules_proto/archive/refs/tags/4.0.0-3.20.0.tar.gz",
-  ],
+cc_binary(
+  name = "analytics_client",
+  srcs = ["client.cc"],
+  deps = [
+    "@com_github_grpc_grpc//:grpc++",
+    "//protobufs:connection_proto_grpc"
+  ]
 )
-
-load("@rules_proto//proto:repositories.bzl", "rules_proto_dependencies", "rules_proto_toolchains")
-rules_proto_dependencies()
-rules_proto_toolchains()
-
-http_archive(
-  name = "com_github_grpc_grpc",
-  sha256 = "bbdde400a17ebd8847a5e85c255ec866931381e2ace41480ea6c7e554906e4e6",
-  urls = [
-    "https://github.com/grpc/grpc/archive/dec31be045bd6e5b8e790dee5bc25844fc90a97d.tar.gz",
-  ],
-  strip_prefix = "grpc-dec31be045bd6e5b8e790dee5bc25844fc90a97d",
-)
-
-load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
-grpc_deps()
-
-load("@com_github_grpc_grpc//bazel:grpc_extra_deps.bzl", "grpc_extra_deps")
-grpc_extra_deps()

@@ -19,46 +19,18 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-load("@com_github_grpc_grpc//bazel:cc_grpc_library.bzl", "cc_grpc_library")
-load("@rules_cc//cc:defs.bzl", "cc_binary", "cc_proto_library")
-load("@rules_proto//proto:defs.bzl", "proto_library")
-
-licenses(["notice"])
-package(default_visibility = ["//visibility:public"])
-
-proto_library(
-  name = "analytics_proto",
-  srcs = ["connection.proto"]
-)
-
-cc_proto_library(
-  name = "analytics_cc_proto",
-  deps = [":analytics_proto"]
-)
-
-cc_grpc_library(
-  name = "analytics_cc_grpc",
-  srcs = [":analytics_proto"],
-  grpc_only = True,
-  deps = [":analytics_cc_proto"]
-)
-
-cc_binary(
-  name = "analytics_client",
-  srcs = ["client.cc"],
-  defines = ["BAZEL_BUILD"],
-  deps = [
-    ":analytics_cc_grpc",
-    "@com_github_grpc_grpc//:grpc++"
-  ]
-)
-
 cc_binary(
   name = "analytics_server",
   srcs = ["server.cc"],
-  defines = ["BAZEL_BUILD"],
+  deps = [":protos_lib"]
+)
+
+cc_library(
+  name = "protos_lib",
+  srcs = ["protos.cc"],
+  hdrs = ["protos.h"],
   deps = [
-    ":analytics_cc_grpc",
-    "@com_github_grpc_grpc//:grpc++"
+    "@com_github_grpc_grpc//:grpc++",
+    "//protobufs:connection_proto_grpc"
   ]
 )

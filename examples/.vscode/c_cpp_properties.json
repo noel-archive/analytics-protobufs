@@ -1,0 +1,14 @@
+{
+  "version": 4,
+  "configurations": [
+    {
+      "name": "Linux",
+      "compileCommands": "${workspaceDir}/examples/compile_commands.json",
+      "intelliSenseMode": "linux-clang-x86",
+      "cppStandard": "c++23",
+      "cStandard": "c17",
+      "includePath": ["${workspaceDir}/examples/**/*"],
+      "compilerPath": "/usr/bin/clang"
+    }
+  ]
+}

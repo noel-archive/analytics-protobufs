@@ -19,6 +19,28 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-#include <iostream>
-#include <memory>
 #include <string>
+#include <google/protobuf/timestamp.pb.h>
+#include <google/protobuf/struct.pb.h>
+#include <grpcpp/grpcpp.h>
+
+#ifdef BAZEL_BUILD
+#include "protobufs/connection.grpc.pb.h"
+#else
+#include "protobufs/connection.grpc.pb.h"
+#endif
+
+using noelware::analytics::protobufs::ConnectionAckResponse;
+using noelware::analytics::protobufs::ReceiveStatsResponse;
+using noelware::analytics::protobufs::ConnectionAckRequest;
+using noelware::analytics::protobufs::ReceiveStatsRequest;
+using noelware::analytics::protobufs::Analytics;
+using grpc::ServerContext;
+using grpc::Status;
+
+namespace examples {
+  class AnalyticsImpl final : public Analytics::Service {
+    Status ConnectionAck(ServerContext* context, const ConnectionAckRequest* request, ConnectionAckResponse* res) override;
+    Status RetrieveStats(ServerContext* context, const ReceiveStatsRequest* request, ReceiveStatsResponse* res) override;
+  };
+}

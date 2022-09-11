@@ -1,11 +1,9 @@
-# 🧭🐃 Protocol Buffers for Noelware Analytics
+# 🐻‍❄️🐾 Protocol Buffers for Noelware Analytics
 > *Protobufs for the Analytics engine.*
 
-This repository holds all the request and response types for the server/client aspect of the engine. This is a submodule for any Noelware product that has permission to use the Analytics engine.
+**Noelware Analytics** leverages with **gRPC** to provide a secure, and safe way to collect metrics without third parties collecting your data. This repository is for definitions and a plain C++ example with Bazel.
 
-## Supported
-- [Arisu](https://arisu.land)
-- [charted](https://charts.noelware.org)
+Read the [main repository](https://github.com/Noelware/Analytics) for more information about **Noelware Analytics**.
 
 ## License
 **analytics-protobufs** is released under the **MIT License** by [Noelware](https://noelware.org). Read the [LICENSE file](./LICENSE) for more information.
