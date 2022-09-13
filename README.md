@@ -1,7 +1,7 @@
 # 🐻‍❄️🐾 Protocol Buffers for Noelware Analytics
-> *Protobufs for the Analytics engine.*
+> *Protocol Buffers definitions for the [Noelware Analytics](https://analytics.noelware.org) project*
 
-**Noelware Analytics** leverages with **gRPC** to provide a secure, and safe way to collect metrics without third parties collecting your data. This repository is for definitions and a plain C++ example with Bazel.
+**Noelware Analytics** is a centralized way to ingest data from your simple HTTP server to system metrics! This repository contains only the definitions to create the services to ingest data.
 
 Read the [main repository](https://github.com/Noelware/Analytics) for more information about **Noelware Analytics**.
 
